@@ -1,22 +1,48 @@
+//// togloomiin buh gazart ashiglagdah global huwisagchdiig zarlay
 // toglogchiin eeljiig hadgalah huwisagch, 1r toglogchig 0, 2r toglogchig 1 gj temdegley
-var activePlayer = 0;
+var activePlayer;
 
 //Toglogchiin tsugluulsan onoog hadgalah huwisagch
-var scores = [0, 0];
+var scores;
 
 //Toglogchiin eeljiig tsugluulj baigaa onoog hadgalah huwisagch
-var roundScore = 0;
+var roundScore;
 
-//shoo ali talaaraa buusniig hadgalah huwisagch. 1-6 gsn utgig sanamsargvi vvsgej ugnu
-
-//programm ehlehed beltgey
-document.getElementById("score-1").textContent = "0";
-document.getElementById("score-0").textContent = "0";
-document.getElementById("current-1").textContent = "0";
-document.getElementById("current-0").textContent = "0";
-
+// shoonii zurgiig uzuuleh elementiig DOM-oos haij olood end hadgalya.
 var diceDom = document.querySelector(".dice");
-diceDom.style.display = "none";
+
+// togloomiig ehluulne
+initGame();
+
+// Togloomiig shineer ehlehed beldeh ywts
+function initGame() {
+  activePlayer = 0;
+
+  scores = [0, 0];
+
+  roundScore = 0;
+
+  //shoo ali talaaraa buusniig hadgalah huwisagch. 1-6 gsn utgig sanamsargvi vvsgej ugnu
+
+  //programm ehlehed beltgey
+  document.getElementById("score-1").textContent = "0";
+  document.getElementById("score-0").textContent = "0";
+  document.getElementById("current-1").textContent = "0";
+  document.getElementById("current-0").textContent = "0";
+
+  // toglogchdiin neriig butsaaj gargah
+  document.getElementById("name-0").textContent = "player 1";
+  document.getElementById("name-1").textContent = "player 2";
+  document.querySelector(".player-0-panel").classList.remove("winner");
+  document.querySelector(".player-1-panel").classList.remove("winner");
+
+  document.querySelector(".player-0-panel").classList.remove("active");
+  document.querySelector(".player-1-panel").classList.remove("active");
+
+  document.querySelector(".player-0-panel").classList.add("active");
+
+  diceDom.style.display = "none";
+}
 
 // shoog shideh event listener
 document.querySelector(".btn-roll").addEventListener("click", function () {
@@ -95,3 +121,6 @@ function switchToNextPlayer() {
   // shoog tur alga bolgono.
   diceDom.style.display = "none";
 }
+
+// New game buyu shine togloom ehluuleh towchnii event listener
+document.querySelector(".btn-new").addEventListener("click", initGame);
